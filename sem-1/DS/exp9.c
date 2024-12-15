@@ -8,10 +8,8 @@ struct NODE
     struct NODE *left;
     int height;
 };
-demo
 
-    int
-    get_height(struct NODE *n)
+int get_height(struct NODE *n)
 {
     if (n == NULL)
         return 0;
