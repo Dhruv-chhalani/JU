@@ -102,6 +102,7 @@
 int queue[MAX];
 int front = -1, rear = -1;
 
+
 // Check if the queue is empty
 int isEmpty()
 {
