@@ -1,0 +1,77 @@
+10. Write a shell script to create a file in the $USER /class/batch directory. Follow the Instructions
+● Input a page profile to yourself, copy it into other existing file
+● Start printing file at certain line
+● Print all the difference between two file
+● Print lines matching certain word pattern
+
+
+#!/bin/bash
+
+# Check if required directory exists, if not create it
+USER_DIR="/home/$USER/class/batch"
+if [ ! -d "$USER_DIR" ]; then
+    mkdir -p "$USER_DIR"
+    echo "Created directory: $USER_DIR"
+fi
+
+# Create a profile file with some sample content
+PROFILE_FILE="$USER_DIR/my_profile.txt"
+cat > "$PROFILE_FILE" << EOF
+Name: Claude
+Role: AI Assistant
+Skills:
+1. Programming
+2. Data Analysis
+3. Problem Solving
+4. Technical Writing
+5. Language Processing
+Interests:
+- Artificial Intelligence
+- Machine Learning
+- Natural Language Processing
+- Software Development
+EOF
+
+echo "Created profile file: $PROFILE_FILE"
+
+# Copy profile to another file
+COPY_FILE="$USER_DIR/profile_copy.txt"
+cp "$PROFILE_FILE" "$COPY_FILE"
+echo "Created copy of profile at: $COPY_FILE"
+
+# Modify the copy file slightly to demonstrate diff
+echo "Additional Skills: Cloud Computing" >> "$COPY_FILE"
+
+# Function to print file starting from specific line
+print_from_line() {
+    local file=$1
+    local start_line=$2
+    echo "Printing $file from line $start_line:"
+    tail -n "+$start_line" "$file"
+}
+
+# Function to find differences between files
+show_differences() {
+    local file1=$1
+    local file2=$2
+    echo "Differences between $file1 and $file2:"
+    diff "$file1" "$file2"
+}
+
+# Function to search for pattern
+search_pattern() {
+    local file=$1
+    local pattern=$2
+    echo "Lines matching pattern '$pattern' in $file:"
+    grep "$pattern" "$file"
+}
+
+# Demonstrate the functions
+echo -e "\n=== Starting from line 5 ==="
+print_from_line "$PROFILE_FILE" 5
+
+echo -e "\n=== Differences between files ==="
+show_differences "$PROFILE_FILE" "$COPY_FILE"
+
+echo -e "\n=== Lines matching 'Skills' ==="
+search_pattern "$PROFILE_FILE" "Skills"
