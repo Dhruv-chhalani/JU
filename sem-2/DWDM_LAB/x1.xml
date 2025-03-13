@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DemoDetails>
+    <User>
+        <Name>John Doe</Name>
+        <Email>johndoe@example.com</Email>
+        <Phone>+1234567890</Phone>
+    </User>
+    <Product>
+        <ID>101</ID>
+        <Name>Sample Product</Name>
+        <Category>Electronics</Category>
+        <Price>99.99</Price>
+    </Product>
+    <Transaction>
+        <TransactionID>TXN123456</TransactionID>
+        <Date>2025-02-19</Date>
+        <Status>Completed</Status>
+    </Transaction>
+</DemoDetails>
